@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: 'Overlock', cursive;
+}
+
+.App {
+  padding: 40px;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 3px solid #374045;
+  margin-bottom: 30px;
+  padding: 0 0 10px; 
+}
+.header__title h2{
+  font-weight: 900;
+  color: #2C061F;
+  font-size: 2rem;
+}
+.header__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 30px;
+}
+
+.header__actions button {
+  height: 30px;
+  background-color: #2C061F;
+  margin-left: 10px;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: 900;
+  font-size: 1.5rem;
+  height: 40px;
+  padding: 0 10px;
+  cursor: pointer;
+}
+.header__actions button:hover{
+  
+  background-color: #D89216;
+  color: #2C061F;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.item__container {
+  display: flex;
+  flex-direction: column;  
+  flex: 1;
+  flex-basis: 20%;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 30px;
+  margin: 20px;
+  border: solid 2px #D89216;
+
+}
+.item__container .definition {
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 200;
+}
+.add__product {
+  display: flex;
+  flex-flow: row wrap;
+}
+.form__container{
+  display: flex;
+  flex-direction: column;
+  background-color: #E1D89F;
+  padding: 20px;
+  border-radius: 10px;
+}
+.form__container-box{
+  display: flex;
+  margin: 10px;
+}
+.form__container-box label {
+  width: 70px;
+  color: #2C061F;
+}
+.form__container-box input, .alternate__options input  {
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  width: 200px;
+}
+
+.form__container-box p {
+  color: #2C061F;
+  margin-right: 20px;
+}
+.form__container-box select {
+  padding: 10px;
+  border-radius: 5px;
+  width: 100px;
+}
+.alternate__options {
+  background-color:#37404567;
+  padding: 30px;
+  color: white;
+  border-radius: 10px;
+}
+.alternate__options label {
+  padding-right: 20px;
+}
+
+.item {
+  margin: 10px;
+}
