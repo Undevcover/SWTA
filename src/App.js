@@ -1,17 +1,27 @@
-import './App.css';
-import { Route, Routes } from 'react-router';
-import { useState } from 'react'
+import "./App.css";
+import { Route, Routes } from "react-router";
+import { useState } from "react"
 
     /* imported pages/items */
-import ProductAdd from './pages/ProductAdd';
-import NotFound from './pages/NotFound';
-import ProductList from './pages/ProductList'
+import ProductAdd from "./pages/ProductAdd";
+import NotFound from "./pages/NotFound";
+import ProductList from "./pages/ProductList"
 import data from "./data"
 
 /*Renders the entire app*/
 
 function App() {
+  const [error, setError] = useState({
+    sku: false,
+    name: false,
+    price: false,
+    height: false,
+    width: false,
+    length: false,
+    book: false,
+    dvd: false
 
+  })
   const[display, setDisplay] =useState({
     dvd: false,
     book: false,
@@ -20,23 +30,26 @@ function App() {
 
   const [formItems, setFormItems] = useState({
     isChecked: false,
-    sku: '',
-    name: '',
-    price: '',
-    measurement: '',
-    height: '',
-    width: '',
-    length: '',
-    book: '',
-    dvd: ''
-  }) /*State to conditionally render form input*/
+    sku: "",
+    name: "",
+    price: "",
+    measurement: "",
+    height: "",
+    width: "",
+    length: "",
+    book: "",
+    dvd: ""
+  }) 
+    
+  
+  /*State to conditionally render form input*/
 
   const [items, setItems] = useState(data) /*State to store all data from database*/
 
   /*This function handles the change to each input in the form, sets switched type to display corresponding form and set form item to store the input values*/
   const handleChange = e =>{
     const {name, value } = e.target
-    name === 'measurement' && setDisplay( () => {
+    name === "measurement" && setDisplay( () => {
       return {
         [value]: !display[value]
 
@@ -81,15 +94,15 @@ function App() {
     })
     setFormItems(()=> {
       return {
-      sku: '',
-    name: '',
-    price: '',
-    measurement: '',
-    height: '',
-    width: '',
-    length: '',
-    book: '',
-    dvd: ''
+      sku: "",
+    name: "",
+    price: "",
+    measurement: "",
+    height: "",
+    width: "",
+    length: "",
+    book: "",
+    dvd: ""
       }
     })
   }
@@ -97,18 +110,30 @@ function App() {
 /*Submits data to database and resets the input fields on submission*/
   const  handleSubmit = (e) => {
     e.preventDefault()
+    if (formItems.sku.length===0){
+      setError(prevError =>{
+        return {
+          ...prevError,
+          dvd: !prevError.dvd
+        }
+      })
+      return
+    }
+    else{
+
+    
     addItem(formItems)
     setFormItems(()=> {
       return {
-      sku: '',
-    name: '',
-    price: '',
-    measurement: '',
-    height: '',
-    width: '',
-    length: '',
-    book: '',
-    dvd: ''
+      sku: "",
+    name: "",
+    price: "",
+    measurement: "",
+    height: "",
+    width: "",
+    length: "",
+    book: "",
+    dvd: ""
       }
     })
     setDisplay(()=>{
@@ -119,6 +144,7 @@ function App() {
       }
       
     })
+  }
   }
 
   /*allows the checkbox to be checked*/
@@ -135,15 +161,15 @@ const handleDelete = () => {
 
 
 
-  /*renders the added product's measurements depending on the type selected */
+  /*renders the added product"s measurements depending on the type selected */
   const renderOptions = (formItem, objectItem) => {
-  if (objectItem ==='dvd'){
+  if (objectItem ==="dvd"){
     return `Size: ${formItem.dvd} MB`
   }
-  else  if (objectItem ==='furniture') {
+  else  if (objectItem ==="furniture") {
     return `Dimensions: ${formItem.height}x${formItem.width}x${formItem.length}`
   }
-  else  if (objectItem ==='book'){
+  else  if (objectItem ==="book"){
     return `Weight: ${formItem.book} KG`
   }
 
@@ -177,6 +203,7 @@ const item = items.map(item => {
       handleChange={handleChange}
       handleSubmit={handleSubmit}
       handleCancel={handleCancel}
+      error={error}
       />}/>
       <Route path="/*" element={ <NotFound />}/>
     </Routes>

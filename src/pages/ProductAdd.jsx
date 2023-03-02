@@ -3,7 +3,7 @@ import Header from "../components/Header";
     
   /*Renders the add-product page*/
 
-const ProductAdd = ({ formItems, handleChange, handleSubmit, display, handleCancel}) => {
+const ProductAdd = ({ formItems, error, handleChange, handleSubmit, display, handleCancel}) => {
   
   /*Object used to create main form*/
   const formData = [
@@ -43,12 +43,10 @@ const ProductAdd = ({ formItems, handleChange, handleSubmit, display, handleCanc
       <input
         type="text"
         id={item.title.toLowerCase()}
-        placeholder={`#${item.title.toLowerCase()}`}
         autoFocus
         value={formItems[`${item.title.toLowerCase()}`]}
         name={item.title.toLowerCase()}
         onChange={handleChange}
-        required
       />
     </div>
   ));
@@ -85,7 +83,7 @@ const ProductAdd = ({ formItems, handleChange, handleSubmit, display, handleCanc
 
       {/*all form parts put together*/}
     
-      <div>
+      <div className="form_div">
         <form id="product_form" className="form__container">
           {form}
 
@@ -118,14 +116,16 @@ const ProductAdd = ({ formItems, handleChange, handleSubmit, display, handleCanc
                 type="text" 
                 name="dvd" 
                 id="size" />
-              <p>Please provide size</p>
+              {error.dvd && <p style={{"color": "red"}}>* size cannot be empty</p>}
+              <p>Please, provide size</p>
             </div>
           )}
           {display.furniture && (
             <>
               <div className="alternate__options">
                 {furniture}
-                <p>Please provide dimensions</p>
+                <p style={{"color": "red"}}> * field cannot be empty</p>
+                <p>Please, provide dimensions</p>
               </div>
             </>
           )}
@@ -139,7 +139,8 @@ const ProductAdd = ({ formItems, handleChange, handleSubmit, display, handleCanc
                 name="book"
                 id="weight"
               />
-              <p>Please provide weight</p>
+              <p style={{"color": "red"}}>* size cannot be empty</p>
+              <p>Please, provide weight</p>
             </div>
           )}
         </form>
