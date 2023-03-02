@@ -109,19 +109,7 @@ function App() {
   
 /*Submits data to database and resets the input fields on submission*/
   const  handleSubmit = (e) => {
-    e.preventDefault()
-    if (formItems.sku.length===0){
-      setError(prevError =>{
-        return {
-          ...prevError,
-          dvd: !prevError.dvd
-        }
-      })
-      return
-    }
-    else{
-
-    
+    e.preventDefault()    
     addItem(formItems)
     setFormItems(()=> {
       return {
@@ -144,7 +132,6 @@ function App() {
       }
       
     })
-  }
   }
 
   /*allows the checkbox to be checked*/
